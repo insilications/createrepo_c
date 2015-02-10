@@ -1,0 +1,4 @@
+# Stateless bash-completion
+mkdir -p %{buildroot}%{_datadir}/bash-completion/completions/
+mv %{buildroot}%{_sysconfdir}/bash_completion.d/createrepo_c.bash %{buildroot}%{_datadir}/bash-completion/completions/createrepo_c
+rm -rf %{buildroot}%{_sysconfdir}/bash_completion.d
