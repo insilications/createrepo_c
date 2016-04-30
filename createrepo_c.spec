@@ -4,7 +4,7 @@
 #
 Name     : createrepo_c
 Version  : 0.1.14
-Release  : 10
+Release  : 11
 URL      : https://fedorahosted.org/releases/c/r/createrepo_c/createrepo_c-0.1.14.tar.xz
 Source0  : https://fedorahosted.org/releases/c/r/createrepo_c/createrepo_c-0.1.14.tar.xz
 Summary  : ""
