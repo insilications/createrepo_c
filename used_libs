@@ -1,0 +1,15 @@
+libbz2.so.0
+libc.so.6
+libcrypto.so.1.0.0
+libcurl.so.4
+libexpat.so.1
+libglib-2.0.so.0
+libgthread-2.0.so.0
+liblzma.so.5
+libmagic.so.1
+libpython2.7.so.1.0
+librpm.so.3
+librpmio.so.3
+libsqlite3.so.0
+libxml2.so.2
+libz.so.1

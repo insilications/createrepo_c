@@ -11,3 +11,5 @@ bzip2-dev
 zlib-dev
 libxml2-dev
 curl-dev
+python-dev
+openssl-dev
