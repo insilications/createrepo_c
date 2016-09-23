@@ -4,7 +4,7 @@
 #
 Name     : createrepo_c
 Version  : 0.7.2
-Release  : 12
+Release  : 13
 URL      : https://github.com/rpm-software-management/createrepo_c/archive/0.7.2.tar.gz
 Source0  : https://github.com/rpm-software-management/createrepo_c/archive/0.7.2.tar.gz
 Summary  : Test package
