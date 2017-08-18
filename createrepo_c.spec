@@ -4,7 +4,7 @@
 #
 Name     : createrepo_c
 Version  : 0.10.0
-Release  : 18
+Release  : 19
 URL      : https://github.com/rpm-software-management/createrepo_c/archive/0.10.0.tar.gz
 Source0  : https://github.com/rpm-software-management/createrepo_c/archive/0.10.0.tar.gz
 Summary  : Test package
@@ -92,14 +92,19 @@ python components for the createrepo_c package.
 %setup -q -n createrepo_c-0.10.0
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
+export SOURCE_DATE_EPOCH=1503074776
 mkdir clr-build
 pushd clr-build
-cmake .. -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS:BOOL=ON -DLIB_INSTALL_DIR:PATH=%{_libdir} -DCMAKE_AR=/usr/bin/gcc-ar -DCMAKE_RANLIB=/usr/bin/gcc-ranlib -DLIB_INSTALL_DIR=/usr/lib64
+cmake .. -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS:BOOL=ON -DLIB_INSTALL_DIR:PATH=/usr/lib64 -DCMAKE_AR=/usr/bin/gcc-ar -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_RANLIB=/usr/bin/gcc-ranlib -DLIB_INSTALL_DIR=/usr/lib64
 make VERBOSE=1  %{?_smp_mflags}
 popd
 
 %install
+export SOURCE_DATE_EPOCH=1503074776
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
@@ -146,8 +151,8 @@ popd
 /usr/include/createrepo_c/xml_dump.h
 /usr/include/createrepo_c/xml_file.h
 /usr/include/createrepo_c/xml_parser.h
-/usr/lib64/*.so
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libcreaterepo_c.so
+/usr/lib64/pkgconfig/createrepo_c.pc
 
 %files doc
 %defattr(-,root,root,-)
@@ -155,8 +160,9 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libcreaterepo_c.so.0
+/usr/lib64/libcreaterepo_c.so.0.10.0
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
