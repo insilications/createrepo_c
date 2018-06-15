@@ -27,7 +27,7 @@ BuildRequires : pkgconfig(gthread-2.0)
 BuildRequires : pkgconfig(liblzma)
 BuildRequires : pkgconfig(sqlite3)
 BuildRequires : popt-dev
-BuildRequires : python-dev
+
 BuildRequires : rpm-dev
 BuildRequires : zlib-dev
 
