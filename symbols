@@ -151,6 +151,7 @@ libcreaterepo_c.so.0:cr_updaterecord_new
 libcreaterepo_c.so.0:cr_updatereference_copy
 libcreaterepo_c.so.0:cr_updatereference_free
 libcreaterepo_c.so.0:cr_updatereference_new
+libcreaterepo_c.so.0:cr_version_string_with_features
 libcreaterepo_c.so.0:cr_warning_cb
 libcreaterepo_c.so.0:cr_write
 libcreaterepo_c.so.0:cr_write_to_file
@@ -199,3 +200,4 @@ libcreaterepo_c.so.0:cr_xmlfile_sopen
 libcreaterepo_c.so.0:cr_xmlfile_write_xml_footer
 libcreaterepo_c.so.0:cr_xmlfile_write_xml_header
 libcreaterepo_c.so.0:createrepo_c_error_quark
+libcreaterepo_c.so.0:prepare_split_media_baseurl
