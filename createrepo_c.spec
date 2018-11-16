@@ -4,24 +4,25 @@
 #
 Name     : createrepo_c
 Version  : 0.11.1
-Release  : 27
+Release  : 28
 URL      : https://github.com/rpm-software-management/createrepo_c/archive/0.11.1.tar.gz
 Source0  : https://github.com/rpm-software-management/createrepo_c/archive/0.11.1.tar.gz
 Summary  : Test package
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0
-Requires: createrepo_c-bin
-Requires: createrepo_c-python3
-Requires: createrepo_c-lib
-Requires: createrepo_c-data
-Requires: createrepo_c-license
-Requires: createrepo_c-man
-Requires: createrepo_c-python
+Requires: createrepo_c-bin = %{version}-%{release}
+Requires: createrepo_c-data = %{version}-%{release}
+Requires: createrepo_c-lib = %{version}-%{release}
+Requires: createrepo_c-license = %{version}-%{release}
+Requires: createrepo_c-man = %{version}-%{release}
+Requires: createrepo_c-python = %{version}-%{release}
+Requires: createrepo_c-python3 = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : bzip2-dev
 BuildRequires : curl-dev
 BuildRequires : doxygen
 BuildRequires : expat-dev
+BuildRequires : extra-cmake-modules pkgconfig(glib-2.0)
 BuildRequires : file-dev
 BuildRequires : libxml2-dev
 BuildRequires : openssl-dev
@@ -40,12 +41,20 @@ BuildRequires : zlib-dev
 %description
 This package has provides, requires, obsoletes, conflicts options.
 
+%package abi
+Summary: abi components for the createrepo_c package.
+Group: Default
+
+%description abi
+abi components for the createrepo_c package.
+
+
 %package bin
 Summary: bin components for the createrepo_c package.
 Group: Binaries
-Requires: createrepo_c-data
-Requires: createrepo_c-license
-Requires: createrepo_c-man
+Requires: createrepo_c-data = %{version}-%{release}
+Requires: createrepo_c-license = %{version}-%{release}
+Requires: createrepo_c-man = %{version}-%{release}
 
 %description bin
 bin components for the createrepo_c package.
@@ -62,10 +71,10 @@ data components for the createrepo_c package.
 %package dev
 Summary: dev components for the createrepo_c package.
 Group: Development
-Requires: createrepo_c-lib
-Requires: createrepo_c-bin
-Requires: createrepo_c-data
-Provides: createrepo_c-devel
+Requires: createrepo_c-lib = %{version}-%{release}
+Requires: createrepo_c-bin = %{version}-%{release}
+Requires: createrepo_c-data = %{version}-%{release}
+Provides: createrepo_c-devel = %{version}-%{release}
 
 %description dev
 dev components for the createrepo_c package.
@@ -74,8 +83,8 @@ dev components for the createrepo_c package.
 %package lib
 Summary: lib components for the createrepo_c package.
 Group: Libraries
-Requires: createrepo_c-data
-Requires: createrepo_c-license
+Requires: createrepo_c-data = %{version}-%{release}
+Requires: createrepo_c-license = %{version}-%{release}
 
 %description lib
 lib components for the createrepo_c package.
@@ -100,7 +109,7 @@ man components for the createrepo_c package.
 %package python
 Summary: python components for the createrepo_c package.
 Group: Default
-Requires: createrepo_c-python3
+Requires: createrepo_c-python3 = %{version}-%{release}
 
 %description python
 python components for the createrepo_c package.
@@ -123,24 +132,28 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1533236469
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1542399041
+mkdir -p clr-build
 pushd clr-build
 %cmake .. -DLIB_INSTALL_DIR=/usr/lib64
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1533236469
+export SOURCE_DATE_EPOCH=1542399041
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/createrepo_c
-cp COPYING %{buildroot}/usr/share/doc/createrepo_c/COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/createrepo_c
+cp COPYING %{buildroot}/usr/share/package-licenses/createrepo_c/COPYING
 pushd clr-build
 %make_install
 popd
 
 %files
 %defattr(-,root,root,-)
+
+%files abi
+%defattr(-,root,root,-)
+/usr/share/abi/libcreaterepo_c.so.0.abi
 
 %files bin
 %defattr(-,root,root,-)
@@ -189,11 +202,11 @@ popd
 /usr/lib64/libcreaterepo_c.so.0.11.1
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/createrepo_c/COPYING
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/createrepo_c/COPYING
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man8/createrepo_c.8
 /usr/share/man/man8/mergerepo_c.8
 /usr/share/man/man8/modifyrepo_c.8
