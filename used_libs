@@ -12,5 +12,6 @@ libpython3.7m.so.1.0
 librpm.so.3
 librpmio.so.3
 libsqlite3.so.0
+libssl.so.1.1
 libxml2.so.2
 libz.so.1

@@ -4,7 +4,7 @@
 #
 Name     : createrepo_c
 Version  : 0.11.1
-Release  : 28
+Release  : 29
 URL      : https://github.com/rpm-software-management/createrepo_c/archive/0.11.1.tar.gz
 Source0  : https://github.com/rpm-software-management/createrepo_c/archive/0.11.1.tar.gz
 Summary  : Test package
@@ -40,14 +40,6 @@ BuildRequires : zlib-dev
 
 %description
 This package has provides, requires, obsoletes, conflicts options.
-
-%package abi
-Summary: abi components for the createrepo_c package.
-Group: Default
-
-%description abi
-abi components for the createrepo_c package.
-
 
 %package bin
 Summary: bin components for the createrepo_c package.
@@ -132,15 +124,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542399041
+export SOURCE_DATE_EPOCH=1550708239
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake .. -DLIB_INSTALL_DIR=/usr/lib64
 make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1542399041
+export SOURCE_DATE_EPOCH=1550708239
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/createrepo_c
 cp COPYING %{buildroot}/usr/share/package-licenses/createrepo_c/COPYING
@@ -150,10 +143,6 @@ popd
 
 %files
 %defattr(-,root,root,-)
-
-%files abi
-%defattr(-,root,root,-)
-/usr/share/abi/libcreaterepo_c.so.0.abi
 
 %files bin
 %defattr(-,root,root,-)
