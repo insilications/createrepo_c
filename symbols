@@ -45,10 +45,12 @@ libcreaterepo_c.so.0:cr_distrotag_new
 libcreaterepo_c.so.0:cr_download
 libcreaterepo_c.so.0:cr_drpm_support
 libcreaterepo_c.so.0:cr_dumper_thread
+libcreaterepo_c.so.0:cr_end_chunk
 libcreaterepo_c.so.0:cr_evr_free
 libcreaterepo_c.so.0:cr_flag_to_str
 libcreaterepo_c.so.0:cr_free_values
 libcreaterepo_c.so.0:cr_get_compressed_content_stat
+libcreaterepo_c.so.0:cr_get_dict_file
 libcreaterepo_c.so.0:cr_get_filename
 libcreaterepo_c.so.0:cr_get_header_byte_range
 libcreaterepo_c.so.0:cr_hascontrollchars
@@ -109,8 +111,10 @@ libcreaterepo_c.so.0:cr_repomd_record_fill
 libcreaterepo_c.so.0:cr_repomd_record_fill_thread
 libcreaterepo_c.so.0:cr_repomd_record_free
 libcreaterepo_c.so.0:cr_repomd_record_load_contentstat
+libcreaterepo_c.so.0:cr_repomd_record_load_zck_contentstat
 libcreaterepo_c.so.0:cr_repomd_record_new
 libcreaterepo_c.so.0:cr_repomd_record_rename_file
+libcreaterepo_c.so.0:cr_repomd_record_set_timestamp
 libcreaterepo_c.so.0:cr_repomd_remove_record
 libcreaterepo_c.so.0:cr_repomd_set_contenthash
 libcreaterepo_c.so.0:cr_repomd_set_record
@@ -120,7 +124,9 @@ libcreaterepo_c.so.0:cr_repomd_sort_records
 libcreaterepo_c.so.0:cr_repomdrecordfilltask_free
 libcreaterepo_c.so.0:cr_repomdrecordfilltask_new
 libcreaterepo_c.so.0:cr_rm
+libcreaterepo_c.so.0:cr_set_autochunk
 libcreaterepo_c.so.0:cr_set_cleanup_handler
+libcreaterepo_c.so.0:cr_set_dict
 libcreaterepo_c.so.0:cr_setup_logging
 libcreaterepo_c.so.0:cr_slist_free_full
 libcreaterepo_c.so.0:cr_sopen
