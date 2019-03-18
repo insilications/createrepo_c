@@ -90,6 +90,7 @@ libcreaterepo_c.so.0:cr_package_new_without_chunk
 libcreaterepo_c.so.0:cr_package_nvra
 libcreaterepo_c.so.0:cr_package_parser_cleanup
 libcreaterepo_c.so.0:cr_package_parser_init
+libcreaterepo_c.so.0:cr_prepend_protocol
 libcreaterepo_c.so.0:cr_printf
 libcreaterepo_c.so.0:cr_puts
 libcreaterepo_c.so.0:cr_queue_free_full
