@@ -4,7 +4,7 @@
 #
 Name     : createrepo_c
 Version  : 0.12.2
-Release  : 31
+Release  : 32
 URL      : https://github.com/rpm-software-management/createrepo_c/archive/0.12.2.tar.gz
 Source0  : https://github.com/rpm-software-management/createrepo_c/archive/0.12.2.tar.gz
 Summary  : Creates a common metadata repository
