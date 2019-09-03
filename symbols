@@ -1,3 +1,5 @@
+libcreaterepo_c.so.0:cr_GSList_of_cr_Dependency_contains_forbidden_control_chars
+libcreaterepo_c.so.0:cr_Package_contains_forbidden_control_chars
 libcreaterepo_c.so.0:cr_append_pid_and_datetime
 libcreaterepo_c.so.0:cr_better_copy_file
 libcreaterepo_c.so.0:cr_binary_data_new
@@ -12,6 +14,8 @@ libcreaterepo_c.so.0:cr_checksum_type
 libcreaterepo_c.so.0:cr_checksum_update
 libcreaterepo_c.so.0:cr_close
 libcreaterepo_c.so.0:cr_cmp_evr
+libcreaterepo_c.so.0:cr_cmp_metadatum_type
+libcreaterepo_c.so.0:cr_cmp_repomd_record_type
 libcreaterepo_c.so.0:cr_cmp_version_str
 libcreaterepo_c.so.0:cr_compress_file_with_stat
 libcreaterepo_c.so.0:cr_compressing_thread
@@ -22,6 +26,7 @@ libcreaterepo_c.so.0:cr_compressiontask_new
 libcreaterepo_c.so.0:cr_contentstat_free
 libcreaterepo_c.so.0:cr_contentstat_new
 libcreaterepo_c.so.0:cr_copy_file
+libcreaterepo_c.so.0:cr_copy_metadatum
 libcreaterepo_c.so.0:cr_cp
 libcreaterepo_c.so.0:cr_cut_dirs
 libcreaterepo_c.so.0:cr_db_add_filelists_pkg
@@ -53,8 +58,10 @@ libcreaterepo_c.so.0:cr_get_compressed_content_stat
 libcreaterepo_c.so.0:cr_get_dict_file
 libcreaterepo_c.so.0:cr_get_filename
 libcreaterepo_c.so.0:cr_get_header_byte_range
+libcreaterepo_c.so.0:cr_get_zchunk_with_index
 libcreaterepo_c.so.0:cr_hascontrollchars
 libcreaterepo_c.so.0:cr_identical_files
+libcreaterepo_c.so.0:cr_insert_additional_metadatum
 libcreaterepo_c.so.0:cr_latin1_to_utf8
 libcreaterepo_c.so.0:cr_locate_metadata
 libcreaterepo_c.so.0:cr_lock_repo
@@ -67,6 +74,7 @@ libcreaterepo_c.so.0:cr_metadata_locate_and_load_xml
 libcreaterepo_c.so.0:cr_metadata_new
 libcreaterepo_c.so.0:cr_metadata_set_dupaction
 libcreaterepo_c.so.0:cr_metadatalocation_free
+libcreaterepo_c.so.0:cr_metadatum_free
 libcreaterepo_c.so.0:cr_modifyrepo
 libcreaterepo_c.so.0:cr_modifyrepo_parse_batchfile
 libcreaterepo_c.so.0:cr_modifyrepotask_free
@@ -90,11 +98,13 @@ libcreaterepo_c.so.0:cr_package_new_without_chunk
 libcreaterepo_c.so.0:cr_package_nvra
 libcreaterepo_c.so.0:cr_package_parser_cleanup
 libcreaterepo_c.so.0:cr_package_parser_init
+libcreaterepo_c.so.0:cr_parse_repomd
 libcreaterepo_c.so.0:cr_prepend_protocol
 libcreaterepo_c.so.0:cr_printf
 libcreaterepo_c.so.0:cr_puts
 libcreaterepo_c.so.0:cr_queue_free_full
 libcreaterepo_c.so.0:cr_read
+libcreaterepo_c.so.0:cr_remove_compression_suffix_if_present
 libcreaterepo_c.so.0:cr_remove_dir
 libcreaterepo_c.so.0:cr_remove_dir_cb
 libcreaterepo_c.so.0:cr_remove_metadata_classic
@@ -124,15 +134,19 @@ libcreaterepo_c.so.0:cr_repomd_set_revision
 libcreaterepo_c.so.0:cr_repomd_sort_records
 libcreaterepo_c.so.0:cr_repomdrecordfilltask_free
 libcreaterepo_c.so.0:cr_repomdrecordfilltask_new
+libcreaterepo_c.so.0:cr_rewrite_header_package_count
+libcreaterepo_c.so.0:cr_rewrite_pkg_count_thread
 libcreaterepo_c.so.0:cr_rm
 libcreaterepo_c.so.0:cr_set_autochunk
 libcreaterepo_c.so.0:cr_set_cleanup_handler
 libcreaterepo_c.so.0:cr_set_dict
+libcreaterepo_c.so.0:cr_set_global_exit_value
 libcreaterepo_c.so.0:cr_setup_logging
 libcreaterepo_c.so.0:cr_slist_free_full
 libcreaterepo_c.so.0:cr_sopen
 libcreaterepo_c.so.0:cr_spawn_check_exit_status
 libcreaterepo_c.so.0:cr_split_rpm_filename
+libcreaterepo_c.so.0:cr_srpm_val_destroy
 libcreaterepo_c.so.0:cr_str_to_evr
 libcreaterepo_c.so.0:cr_str_to_nevr
 libcreaterepo_c.so.0:cr_str_to_nevra
@@ -144,6 +158,9 @@ libcreaterepo_c.so.0:cr_updatecollection_append_package
 libcreaterepo_c.so.0:cr_updatecollection_copy
 libcreaterepo_c.so.0:cr_updatecollection_free
 libcreaterepo_c.so.0:cr_updatecollection_new
+libcreaterepo_c.so.0:cr_updatecollectionmodule_copy
+libcreaterepo_c.so.0:cr_updatecollectionmodule_free
+libcreaterepo_c.so.0:cr_updatecollectionmodule_new
 libcreaterepo_c.so.0:cr_updatecollectionpackage_copy
 libcreaterepo_c.so.0:cr_updatecollectionpackage_free
 libcreaterepo_c.so.0:cr_updatecollectionpackage_new
@@ -161,6 +178,7 @@ libcreaterepo_c.so.0:cr_updatereference_new
 libcreaterepo_c.so.0:cr_version_string_with_features
 libcreaterepo_c.so.0:cr_warning_cb
 libcreaterepo_c.so.0:cr_write
+libcreaterepo_c.so.0:cr_write_file
 libcreaterepo_c.so.0:cr_write_to_file
 libcreaterepo_c.so.0:cr_xmlNewProp
 libcreaterepo_c.so.0:cr_xmlNewTextChild
@@ -181,6 +199,7 @@ libcreaterepo_c.so.0:cr_xml_dump_primary_dump_pco
 libcreaterepo_c.so.0:cr_xml_dump_repomd
 libcreaterepo_c.so.0:cr_xml_dump_repomd_body
 libcreaterepo_c.so.0:cr_xml_dump_repomd_record
+libcreaterepo_c.so.0:cr_xml_dump_updatecollectionmodule
 libcreaterepo_c.so.0:cr_xml_dump_updatecollectionpackages
 libcreaterepo_c.so.0:cr_xml_dump_updateinfo
 libcreaterepo_c.so.0:cr_xml_dump_updateinfo_body
@@ -207,4 +226,8 @@ libcreaterepo_c.so.0:cr_xmlfile_sopen
 libcreaterepo_c.so.0:cr_xmlfile_write_xml_footer
 libcreaterepo_c.so.0:cr_xmlfile_write_xml_header
 libcreaterepo_c.so.0:createrepo_c_error_quark
+libcreaterepo_c.so.0:koji_allowed
+libcreaterepo_c.so.0:koji_stuff_destroy
+libcreaterepo_c.so.0:koji_stuff_prepare
+libcreaterepo_c.so.0:pkgorigins_prepare
 libcreaterepo_c.so.0:prepare_split_media_baseurl

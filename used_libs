@@ -5,7 +5,6 @@ libcurl.so.4
 libexpat.so.1
 libgcc_s.so.1
 libglib-2.0.so.0
-libgthread-2.0.so.0
 liblzma.so.5
 libmagic.so.1
 libpython3.7m.so.1.0
