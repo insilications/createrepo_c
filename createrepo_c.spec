@@ -4,7 +4,7 @@
 #
 Name     : createrepo_c
 Version  : 0.15.1
-Release  : 40
+Release  : 41
 URL      : https://github.com/rpm-software-management/createrepo_c/archive/0.15.1/createrepo_c-0.15.1.tar.gz
 Source0  : https://github.com/rpm-software-management/createrepo_c/archive/0.15.1/createrepo_c-0.15.1.tar.gz
 Summary  : Creates a common metadata repository
@@ -128,7 +128,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1574186616
+export SOURCE_DATE_EPOCH=1574195352
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -144,7 +144,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1574186616
+export SOURCE_DATE_EPOCH=1574195352
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/createrepo_c
 cp %{_builddir}/createrepo_c-0.15.1/COPYING %{buildroot}/usr/share/package-licenses/createrepo_c/4cc77b90af91e615a64ae04893fdffa7939db84c
