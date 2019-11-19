@@ -4,7 +4,7 @@
 #
 Name     : createrepo_c
 Version  : 0.15.1
-Release  : 39
+Release  : 40
 URL      : https://github.com/rpm-software-management/createrepo_c/archive/0.15.1/createrepo_c-0.15.1.tar.gz
 Source0  : https://github.com/rpm-software-management/createrepo_c/archive/0.15.1/createrepo_c-0.15.1.tar.gz
 Summary  : Creates a common metadata repository
@@ -121,13 +121,14 @@ python3 components for the createrepo_c package.
 
 %prep
 %setup -q -n createrepo_c-0.15.1
+cd %{_builddir}/createrepo_c-0.15.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569349190
+export SOURCE_DATE_EPOCH=1574186616
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -143,10 +144,10 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1569349190
+export SOURCE_DATE_EPOCH=1574186616
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/createrepo_c
-cp COPYING %{buildroot}/usr/share/package-licenses/createrepo_c/COPYING
+cp %{_builddir}/createrepo_c-0.15.1/COPYING %{buildroot}/usr/share/package-licenses/createrepo_c/4cc77b90af91e615a64ae04893fdffa7939db84c
 pushd clr-build
 %make_install
 popd
@@ -204,7 +205,7 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/createrepo_c/COPYING
+/usr/share/package-licenses/createrepo_c/4cc77b90af91e615a64ae04893fdffa7939db84c
 
 %files man
 %defattr(0644,root,root,0755)
