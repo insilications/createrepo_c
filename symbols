@@ -54,6 +54,7 @@ libcreaterepo_c.so.0:cr_end_chunk
 libcreaterepo_c.so.0:cr_evr_free
 libcreaterepo_c.so.0:cr_flag_to_str
 libcreaterepo_c.so.0:cr_free_values
+libcreaterepo_c.so.0:cr_get_cleaned_href
 libcreaterepo_c.so.0:cr_get_compressed_content_stat
 libcreaterepo_c.so.0:cr_get_dict_file
 libcreaterepo_c.so.0:cr_get_filename
