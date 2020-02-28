@@ -4,10 +4,10 @@
 #
 Name     : createrepo_c
 Version  : 0.15.7
-Release  : 46
+Release  : 47
 URL      : https://github.com/rpm-software-management/createrepo_c/archive/0.15.7/createrepo_c-0.15.7.tar.gz
 Source0  : https://github.com/rpm-software-management/createrepo_c/archive/0.15.7/createrepo_c-0.15.7.tar.gz
-Summary  : Creates a common metadata repository
+Summary  : A C implementation of createrepo, a tool to create yum repositories
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
 Requires: createrepo_c-bin = %{version}-%{release}
@@ -71,6 +71,7 @@ Requires: createrepo_c-bin = %{version}-%{release}
 Requires: createrepo_c-data = %{version}-%{release}
 Provides: createrepo_c-devel = %{version}-%{release}
 Requires: createrepo_c = %{version}-%{release}
+Requires: createrepo_c = %{version}-%{release}
 
 %description dev
 dev components for the createrepo_c package.
@@ -129,9 +130,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581715620
+export SOURCE_DATE_EPOCH=1582914128
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -145,7 +147,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1581715620
+export SOURCE_DATE_EPOCH=1582914128
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/createrepo_c
 cp %{_builddir}/createrepo_c-0.15.7/COPYING %{buildroot}/usr/share/package-licenses/createrepo_c/4cc77b90af91e615a64ae04893fdffa7939db84c
