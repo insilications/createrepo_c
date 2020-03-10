@@ -3,7 +3,6 @@
 pkgconfig(gthread-2.0)
 pkgconfig(sqlite3)
 pkgconfig(liblzma)
-expat-dev
 file-dev
 rpm-dev
 popt-dev
