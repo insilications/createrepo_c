@@ -1,5 +1,5 @@
 PKG_NAME := createrepo_c
-URL = https://github.com/rpm-software-management/createrepo_c/archive/0.15.9/createrepo_c-0.15.9.tar.gz
+URL = https://github.com/rpm-software-management/createrepo_c/archive/0.15.10/createrepo_c-0.15.10.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
