@@ -7,8 +7,9 @@ find . -type f -name 'Makefile' -exec sed -i 's:-llz4\b:-Wl,--whole-archive,--as
 find . -type f -name 'Makefile' -exec sed -i 's:-llzo2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzo2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'Makefile' -exec sed -i 's:-lxml2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libxml2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'Makefile' -exec sed -i 's:-lsqlite3\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,/usr/lib64/liblua5.3.a,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;#
+#find . -type f -name 'Makefile' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#find . -type f -name 'Makefile' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,/usr/lib64/liblua53.a,/usr/lib64/libzstd.a,/usr/lib64/libacl.a,/usr/lib64/libcap.a,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#
 find . -type f -name 'link.txt' -exec sed -i 's:-lbz2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libbz2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lzstd\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lz\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libz.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
@@ -18,6 +19,6 @@ find . -type f -name 'link.txt' -exec sed -i 's:-llz4\b:-Wl,--whole-archive,--as
 find . -type f -name 'link.txt' -exec sed -i 's:-llzo2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzo2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lxml2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libxml2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lsqlite3\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,/usr/lib64/liblua5.3.a,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#find . -type f -name 'link.txt' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#find . -type f -name 'link.txt' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,/usr/lib64/liblua53.a,/usr/lib64/libzstd.a,/usr/lib64/libacl.a,/usr/lib64/libcap.a,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 # -lglib-2.0 -lgthread-2.0 -lglib-2.0 -lbz2 -lcurl -lmagic -lxml2 -llzma -lssl -lcrypto -lrpm -lrpmio -lpopt -lsqlite3 -lz -lglib-2.0

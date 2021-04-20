@@ -11,10 +11,20 @@ Source0  : file:///aot/build/clearlinux/packages/createrepo_c/createrepo_c-0.17.
 Summary  : Creates a common metadata repository
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
+Requires: createrepo_c-bin = %{version}-%{release}
+Requires: createrepo_c-data = %{version}-%{release}
+Requires: createrepo_c-man = %{version}-%{release}
+Requires: createrepo_c-python = %{version}-%{release}
+Requires: createrepo_c-python3 = %{version}-%{release}
 BuildRequires : Flask
 BuildRequires : Sphinx
 BuildRequires : acl-dev
 BuildRequires : acl-staticdev
+BuildRequires : automake
+BuildRequires : automake-dev
+BuildRequires : binutils-dev
+BuildRequires : binutils-extras
+BuildRequires : bison
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-distutils3
 BuildRequires : bzip2-dev
@@ -28,24 +38,82 @@ BuildRequires : compat-lua-53-lib
 BuildRequires : compat-lua-53-man
 BuildRequires : compat-lua-53-staticdev
 BuildRequires : curl-dev
+BuildRequires : db-dev
+BuildRequires : dbus-dev
+BuildRequires : dejagnu
+BuildRequires : docbook-utils
+BuildRequires : docbook-xml
 BuildRequires : doxygen
+BuildRequires : elfutils-dev
 BuildRequires : expat-dev
 BuildRequires : expat-staticdev
+BuildRequires : expect
 BuildRequires : extra-cmake-modules
+BuildRequires : fakechroot
+BuildRequires : fakechroot-dev
+BuildRequires : fakechroot-staticdev
+BuildRequires : file
+BuildRequires : file-abi
+BuildRequires : file-bin
+BuildRequires : file-data
 BuildRequires : file-dev
+BuildRequires : file-lib
+BuildRequires : file-license
+BuildRequires : file-man
+BuildRequires : flex
+BuildRequires : gcc
+BuildRequires : gcc-abi
+BuildRequires : gcc-dev
+BuildRequires : gcc-dev32
+BuildRequires : gcc-doc
+BuildRequires : gcc-libgcc32
+BuildRequires : gcc-libs-math
+BuildRequires : gcc-libstdc++32
+BuildRequires : gcc-libubsan
+BuildRequires : gcc-locale
+BuildRequires : gdb
+BuildRequires : gdb-dev
+BuildRequires : gettext-bin
 BuildRequires : gettext-dev
+BuildRequires : git
+BuildRequires : glibc-abi
+BuildRequires : glibc-bench
 BuildRequires : glibc-bin
+BuildRequires : glibc-dev
+BuildRequires : glibc-dev32
+BuildRequires : glibc-doc
+BuildRequires : glibc-extras
+BuildRequires : glibc-lib-avx2
+BuildRequires : glibc-libc32
+BuildRequires : glibc-locale
+BuildRequires : glibc-nscd
+BuildRequires : glibc-staticdev
+BuildRequires : glibc-utils
+BuildRequires : gmp-dev
+BuildRequires : gmp-staticdev
 BuildRequires : gnupg
 BuildRequires : gpgme
 BuildRequires : gpgme-dev
+BuildRequires : graphviz
+BuildRequires : guile
 BuildRequires : json-c
 BuildRequires : json-c-dev
 BuildRequires : json-c-staticdev
+BuildRequires : libarchive
+BuildRequires : libarchive-dev
+BuildRequires : libarchive-staticdev
 BuildRequires : libassuan-dev
+BuildRequires : libcap
+BuildRequires : libcap-dev
 BuildRequires : libcomps-dev
 BuildRequires : libcomps-staticdev
 BuildRequires : libdnf-dev
 BuildRequires : libdnf-staticdev
+BuildRequires : libedit
+BuildRequires : libedit-dev
+BuildRequires : libffi-dev
+BuildRequires : libffi-staticdev
+BuildRequires : libgcc1
 BuildRequires : libgcrypt
 BuildRequires : libgcrypt-dev
 BuildRequires : libmodulemd
@@ -56,6 +124,10 @@ BuildRequires : librepo-staticdev
 BuildRequires : libsolv-dev
 BuildRequires : libsolv-staticdev
 BuildRequires : libstdc++
+BuildRequires : libtool
+BuildRequires : libtool-dev
+BuildRequires : libunwind
+BuildRequires : libunwind-dev
 BuildRequires : libxml2-dev
 BuildRequires : libxml2-staticdev
 BuildRequires : lz4-dev
@@ -66,6 +138,7 @@ BuildRequires : m4
 BuildRequires : nettle-dev
 BuildRequires : nettle-staticdev
 BuildRequires : nose
+BuildRequires : nspr-dev
 BuildRequires : openssl-dev
 BuildRequires : openssl-staticdev
 BuildRequires : pkg-config
@@ -79,7 +152,9 @@ BuildRequires : pkgconfig(modulemd-2.0)
 BuildRequires : pkgconfig(rpm)
 BuildRequires : pkgconfig(sqlite3)
 BuildRequires : pluggy
+BuildRequires : popt
 BuildRequires : popt-dev
+BuildRequires : popt-staticdev
 BuildRequires : py-python
 BuildRequires : pytest
 BuildRequires : python3
@@ -87,12 +162,17 @@ BuildRequires : python3-dev
 BuildRequires : python3-staticdev
 BuildRequires : rpm-dev
 BuildRequires : rpm-staticdev
+BuildRequires : sqlite-autoconf
+BuildRequires : sqlite-autoconf-dev
+BuildRequires : sqlite-autoconf-staticdev
 BuildRequires : swig
 BuildRequires : tox
+BuildRequires : unzip
 BuildRequires : virtualenv
 BuildRequires : xattr
 BuildRequires : xz-dev
 BuildRequires : xz-staticdev
+BuildRequires : zip
 BuildRequires : zlib
 BuildRequires : zlib-dev
 BuildRequires : zlib-staticdev
@@ -110,6 +190,70 @@ A set of utilities (createrepo_c, mergerepo_c, modifyrepo_c)
 for generating a common metadata repository from a directory of
 rpm packages and maintaining it.
 
+%package bin
+Summary: bin components for the createrepo_c package.
+Group: Binaries
+Requires: createrepo_c-data = %{version}-%{release}
+
+%description bin
+bin components for the createrepo_c package.
+
+
+%package data
+Summary: data components for the createrepo_c package.
+Group: Data
+
+%description data
+data components for the createrepo_c package.
+
+
+%package dev
+Summary: dev components for the createrepo_c package.
+Group: Development
+Requires: createrepo_c-bin = %{version}-%{release}
+Requires: createrepo_c-data = %{version}-%{release}
+Provides: createrepo_c-devel = %{version}-%{release}
+Requires: createrepo_c = %{version}-%{release}
+
+%description dev
+dev components for the createrepo_c package.
+
+
+%package man
+Summary: man components for the createrepo_c package.
+Group: Default
+
+%description man
+man components for the createrepo_c package.
+
+
+%package python
+Summary: python components for the createrepo_c package.
+Group: Default
+Requires: createrepo_c-python3 = %{version}-%{release}
+
+%description python
+python components for the createrepo_c package.
+
+
+%package python3
+Summary: python3 components for the createrepo_c package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the createrepo_c package.
+
+
+%package staticdev
+Summary: staticdev components for the createrepo_c package.
+Group: Default
+Requires: createrepo_c-dev = %{version}-%{release}
+
+%description staticdev
+staticdev components for the createrepo_c package.
+
+
 %prep
 %setup -q -n createrepo_c
 cd %{_builddir}/createrepo_c
@@ -122,7 +266,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618920844
+export SOURCE_DATE_EPOCH=1618937418
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -192,8 +336,9 @@ find . -type f -name 'Makefile' -exec sed -i 's:-llz4\b:-Wl,--whole-archive,--as
 find . -type f -name 'Makefile' -exec sed -i 's:-llzo2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzo2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'Makefile' -exec sed -i 's:-lxml2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libxml2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'Makefile' -exec sed -i 's:-lsqlite3\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,/usr/lib64/liblua5.3.a,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;#
+#find . -type f -name 'Makefile' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#find . -type f -name 'Makefile' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,/usr/lib64/liblua53.a,/usr/lib64/libzstd.a,/usr/lib64/libacl.a,/usr/lib64/libcap.a,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#
 find . -type f -name 'link.txt' -exec sed -i 's:-lbz2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libbz2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lzstd\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lz\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libz.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
@@ -203,8 +348,8 @@ find . -type f -name 'link.txt' -exec sed -i 's:-llz4\b:-Wl,--whole-archive,--as
 find . -type f -name 'link.txt' -exec sed -i 's:-llzo2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzo2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lxml2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libxml2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lsqlite3\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,/usr/lib64/liblua5.3.a,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#find . -type f -name 'link.txt' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#find . -type f -name 'link.txt' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,/usr/lib64/liblua53.a,/usr/lib64/libzstd.a,/usr/lib64/libacl.a,/usr/lib64/libcap.a,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 # -lglib-2.0 -lgthread-2.0 -lglib-2.0 -lbz2 -lcurl -lmagic -lxml2 -llzma -lssl -lcrypto -lrpm -lrpmio -lpopt -lsqlite3 -lz -lglib-2.0
 ## make_prepend64 end
 make  %{?_smp_mflags}  V=1 VERBOSE=1
@@ -239,8 +384,9 @@ find . -type f -name 'Makefile' -exec sed -i 's:-llz4\b:-Wl,--whole-archive,--as
 find . -type f -name 'Makefile' -exec sed -i 's:-llzo2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzo2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'Makefile' -exec sed -i 's:-lxml2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libxml2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'Makefile' -exec sed -i 's:-lsqlite3\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,/usr/lib64/liblua5.3.a,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;#
+#find . -type f -name 'Makefile' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#find . -type f -name 'Makefile' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,/usr/lib64/liblua53.a,/usr/lib64/libzstd.a,/usr/lib64/libacl.a,/usr/lib64/libcap.a,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#
 find . -type f -name 'link.txt' -exec sed -i 's:-lbz2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libbz2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lzstd\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lz\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libz.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
@@ -250,142 +396,8 @@ find . -type f -name 'link.txt' -exec sed -i 's:-llz4\b:-Wl,--whole-archive,--as
 find . -type f -name 'link.txt' -exec sed -i 's:-llzo2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzo2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lxml2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libxml2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 find . -type f -name 'link.txt' -exec sed -i 's:-lsqlite3\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,/usr/lib64/liblua5.3.a,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-# -lglib-2.0 -lgthread-2.0 -lglib-2.0 -lbz2 -lcurl -lmagic -lxml2 -llzma -lssl -lcrypto -lrpm -lrpmio -lpopt -lsqlite3 -lz -lglib-2.0
-## make_prepend64 end
-make  %{?_smp_mflags}  V=1 VERBOSE=1
-fi
-popd
-mkdir -p clr-build-special
-pushd clr-build-special
-export GCC_IGNORE_WERROR=1
-## altflags_pgo content
-## pgo generate
-export PGO_GEN="-fprofile-generate=/var/tmp/pgo -fprofile-dir=/var/tmp/pgo -fprofile-abs-path -fprofile-update=atomic -fprofile-arcs -ftest-coverage --coverage -fprofile-partial-training"
-export CFLAGS_GENERATE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -falign-functions=32 -flimit-function-alignment -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe -ffat-lto-objects -flto=16 -fPIC -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_GEN"
-export FCFLAGS_GENERATE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -falign-functions=32 -flimit-function-alignment -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe -ffat-lto-objects -flto=16 -fPIC -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_GEN"
-export FFLAGS_GENERATE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -falign-functions=32 -flimit-function-alignment -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe -ffat-lto-objects -flto=16 -fPIC -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_GEN"
-export CXXFLAGS_GENERATE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -falign-functions=32 -flimit-function-alignment -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -fvisibility-inlines-hidden -pipe -ffat-lto-objects -flto=16 -fPIC -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_GEN"
-export LDFLAGS_GENERATE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -falign-functions=32 -flimit-function-alignment -fno-semantic-interposition -fno-stack-protector -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -mtls-dialect=gnu2 -fno-math-errno -fno-trapping-math -pipe -ffat-lto-objects -flto=16 -fPIC -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc -lpthread $PGO_GEN"
-## pgo use
-## -ffat-lto-objects -fno-PIE -fno-PIE -m64 -no-pie -fpic -fvisibility=hidden -flto-partition=none
-## gcc: -feliminate-unused-debug-types -fipa-pta -flto=16 -Wno-error -Wp,-D_REENTRANT -fno-common
-export PGO_USE="-fprofile-use=/var/tmp/pgo -fprofile-dir=/var/tmp/pgo -fprofile-abs-path -fprofile-correction -fprofile-partial-training"
-export CFLAGS_USE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_USE"
-export FCFLAGS_USE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_USE"
-export FFLAGS_USE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_USE"
-export CXXFLAGS_USE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -fvisibility-inlines-hidden -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc $PGO_USE"
-export LDFLAGS_USE="-O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc -lpthread $PGO_USE"
-#
-export AR=/usr/bin/gcc-ar
-export RANLIB=/usr/bin/gcc-ranlib
-export NM=/usr/bin/gcc-nm
-#
-export MAKEFLAGS=%{?_smp_mflags}
-#
-%global _lto_cflags 1
-#global _lto_cflags %{nil}
-%global _disable_maintainer_mode 1
-#%global _disable_maintainer_mode %{nil}
-#
-export CCACHE_DISABLE=true
-export PATH="/usr/lib64/ccache/bin:$PATH"
-export CCACHE_NOHASHDIR=true
-export CCACHE_CPP2=true
-export CCACHE_SLOPPINESS=pch_defines,time_macros,locale,file_stat_matches,file_stat_matches_ctime,include_file_ctime,include_file_mtime,modules,system_headers,clang_index_store,file_macro
-#export CCACHE_SLOPPINESS=modules,include_file_mtime,include_file_ctime,time_macros,pch_defines,file_stat_matches,clang_index_store,system_headers,locale
-#export CCACHE_SLOPPINESS=pch_defines,time_macros,locale,clang_index_store,file_macro
-export CCACHE_DIR=/var/tmp/ccache
-export CCACHE_BASEDIR=/builddir/build/BUILD
-#export CCACHE_LOGFILE=/var/tmp/ccache/cache.debug
-#export CCACHE_DEBUG=true
-#export CCACHE_NODIRECT=true
-## altflags_pgo end
-if [ ! -f statuspgo.special ]; then
-echo PGO Phase 1
-export CFLAGS="${CFLAGS_GENERATE}"
-export CXXFLAGS="${CXXFLAGS_GENERATE}"
-export FFLAGS="${FFLAGS_GENERATE}"
-export FCFLAGS="${FCFLAGS_GENERATE}"
-export LDFLAGS="${LDFLAGS_GENERATE}"
-%cmake .. -DLIB_INSTALL_DIR=/usr/lib64 \
--DWITH_ZCHUNK=OFF \
--DENABLE_DRPM=OFF \
--DWITH_LIBMODULEMD=OFF \
--DENABLE_THREADED_XZ_ENCODER=ON \
--DBUILD_LIBCREATEREPO_C_SHARED=ON \
--DCMAKE_VERBOSE_MAKEFILE=ON
-## make_prepend64 content
-find . -type f -name 'Makefile' -exec sed -i 's:-lbz2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libbz2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lzstd\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lz\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libz.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-llzma\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzma.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lacl\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libacl.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-llz4\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblz4.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-llzo2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzo2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lxml2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libxml2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lsqlite3\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,/usr/lib64/liblua5.3.a,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;#
-find . -type f -name 'link.txt' -exec sed -i 's:-lbz2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libbz2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lzstd\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lz\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libz.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-llzma\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzma.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lacl\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libacl.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-llz4\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblz4.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-llzo2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzo2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lxml2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libxml2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lsqlite3\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,/usr/lib64/liblua5.3.a,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-# -lglib-2.0 -lgthread-2.0 -lglib-2.0 -lbz2 -lcurl -lmagic -lxml2 -llzma -lssl -lcrypto -lrpm -lrpmio -lpopt -lsqlite3 -lz -lglib-2.0
-## make_prepend64 end
-make  %{?_smp_mflags}  V=1 VERBOSE=1
-
-make -j16 ARGS="-V" WITH_LIBMODULEMD=OFF tests || :
-#make -j1 ARGS="-V" WITH_LIBMODULEMD=OFF test || :
-sh tests/run_tests.sh WITH_LIBMODULEMD=OFF
-find . -type f,l -not -name '*.gcno' -not -name 'statuspgo*' -delete -print
-echo USED > statuspgo.special
-fi
-if [ -f statuspgo.special ]; then
-echo PGO Phase 2
-export CFLAGS="${CFLAGS_USE}"
-export CXXFLAGS="${CXXFLAGS_USE}"
-export FFLAGS="${FFLAGS_USE}"
-export FCFLAGS="${FCFLAGS_USE}"
-export LDFLAGS="${LDFLAGS_USE}"
-%cmake .. -DLIB_INSTALL_DIR=/usr/lib64 \
--DWITH_ZCHUNK=OFF \
--DENABLE_DRPM=OFF \
--DWITH_LIBMODULEMD=OFF \
--DENABLE_THREADED_XZ_ENCODER=ON \
--DBUILD_LIBCREATEREPO_C_SHARED=ON \
--DCMAKE_VERBOSE_MAKEFILE=ON
-## make_prepend64 content
-find . -type f -name 'Makefile' -exec sed -i 's:-lbz2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libbz2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lzstd\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lz\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libz.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-llzma\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzma.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lacl\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libacl.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-llz4\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblz4.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-llzo2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzo2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lxml2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libxml2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lsqlite3\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'Makefile' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,/usr/lib64/liblua5.3.a,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;#
-find . -type f -name 'link.txt' -exec sed -i 's:-lbz2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libbz2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lzstd\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lz\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libz.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-llzma\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzma.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lacl\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libacl.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-llz4\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblz4.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-llzo2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/liblzo2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lxml2\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libxml2.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lsqlite3\b:-Wl,--whole-archive,--as-needed,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
-find . -type f -name 'link.txt' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,/usr/lib64/liblua5.3.a,/usr/lib64/libzstd.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#find . -type f -name 'link.txt' -exec sed -i 's:-lrpmio\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpmio.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
+#find . -type f -name 'link.txt' -exec sed -i 's:-lrpm\b:-Wl,--whole-archive,--as-needed,/usr/lib64/librpm.a,/usr/lib64/liblua53.a,/usr/lib64/libzstd.a,/usr/lib64/libacl.a,/usr/lib64/libcap.a,/usr/lib64/libsqlite3.a,-lpthread,-ldl,-lm,-lmvec,--no-whole-archive:g' {} \;
 # -lglib-2.0 -lgthread-2.0 -lglib-2.0 -lbz2 -lcurl -lmagic -lxml2 -llzma -lssl -lcrypto -lrpm -lrpmio -lpopt -lsqlite3 -lz -lglib-2.0
 ## make_prepend64 end
 make  %{?_smp_mflags}  V=1 VERBOSE=1
@@ -393,14 +405,71 @@ fi
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618920844
+export SOURCE_DATE_EPOCH=1618937418
 rm -rf %{buildroot}
-pushd clr-build-special
-%make_install_special  || :
-popd
 pushd clr-build
 %make_install
 popd
 
 %files
 %defattr(-,root,root,-)
+
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/createrepo_c
+/usr/bin/mergerepo_c
+/usr/bin/modifyrepo_c
+/usr/bin/sqliterepo_c
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/bash-completion/completions/createrepo_c
+/usr/share/bash-completion/completions/mergerepo_c
+/usr/share/bash-completion/completions/modifyrepo_c
+/usr/share/bash-completion/completions/sqliterepo_c
+
+%files dev
+%defattr(-,root,root,-)
+/usr/include/createrepo_c/checksum.h
+/usr/include/createrepo_c/compression_wrapper.h
+/usr/include/createrepo_c/constants.h
+/usr/include/createrepo_c/createrepo_c.h
+/usr/include/createrepo_c/deltarpms.h
+/usr/include/createrepo_c/error.h
+/usr/include/createrepo_c/helpers.h
+/usr/include/createrepo_c/koji.h
+/usr/include/createrepo_c/load_metadata.h
+/usr/include/createrepo_c/locate_metadata.h
+/usr/include/createrepo_c/mergerepo_c.h
+/usr/include/createrepo_c/misc.h
+/usr/include/createrepo_c/modifyrepo_shared.h
+/usr/include/createrepo_c/package.h
+/usr/include/createrepo_c/parsehdr.h
+/usr/include/createrepo_c/parsepkg.h
+/usr/include/createrepo_c/repomd.h
+/usr/include/createrepo_c/sqlite.h
+/usr/include/createrepo_c/threads.h
+/usr/include/createrepo_c/updateinfo.h
+/usr/include/createrepo_c/version.h
+/usr/include/createrepo_c/xml_dump.h
+/usr/include/createrepo_c/xml_file.h
+/usr/include/createrepo_c/xml_parser.h
+/usr/lib64/pkgconfig/createrepo_c.pc
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man8/createrepo_c.8
+/usr/share/man/man8/mergerepo_c.8
+/usr/share/man/man8/modifyrepo_c.8
+/usr/share/man/man8/sqliterepo_c.8
+
+%files python
+%defattr(-,root,root,-)
+
+%files python3
+%defattr(-,root,root,-)
+/usr/lib/python3*/*
+
+%files staticdev
+%defattr(-,root,root,-)
+/usr/lib64/libcreaterepo_c.a
